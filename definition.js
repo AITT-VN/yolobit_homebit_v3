@@ -11,16 +11,16 @@ Blockly.Blocks["homebit3_ir_recv"] = {
           "name": "pin",
           "options": [
             [
-              "P2",
-              "pin2"
+              "P1",
+              "pin1"
             ],
             [
               "P0",
               "pin0"
             ],
             [
-              "P1",
-              "pin1"
+              "P2",
+              "pin2"
             ],
             [
               "P3",
