@@ -4,8 +4,90 @@ Blockly.Blocks["homebit3_ir_recv"] = {
     this.jsonInit({
       colour: "#CC6600",
       tooltip: "",
-      message0: "nút %1 trên remote được nhấn",
+      message0: "cảm biến IR %1 đọc được nút %2 trên remote",
       args0: [
+        {
+          "type": "field_dropdown",
+          "name": "pin",
+          "options": [
+            [
+              "P2",
+              "pin2"
+            ],
+            [
+              "P0",
+              "pin0"
+            ],
+            [
+              "P1",
+              "pin1"
+            ],
+            [
+              "P3",
+              "pin3"
+            ],
+            [
+              "P4",
+              "pin4"
+            ],
+            [
+              "P5",
+              "pin5"
+            ],
+            [
+              "P6",
+              "pin6"
+            ],
+            [
+              "P7",
+              "pin7"
+            ],
+            [
+              "P8",
+              "pin8"
+            ],
+            [
+              "P9",
+              "pin9"
+            ],
+            [
+              "P10",
+              "pin10"
+            ],
+            [
+              "P11",
+              "pin11"
+            ],
+            [
+              "P12",
+              "pin12"
+            ],
+            [
+              "P13",
+              "pin13"
+            ],
+            [
+              "P14",
+              "pin14"
+            ],
+            [
+              "P15",
+              "pin15"
+            ],
+            [
+              "P16",
+              "pin16"
+            ],
+            [
+              "P19",
+              "pin19"
+            ],
+            [
+              "P20",
+              "pin20"
+            ]
+          ]
+        },
         {
           type: "field_dropdown",
           name: "remote",
@@ -74,8 +156,10 @@ Blockly.Blocks["homebit3_ir_recv"] = {
 
 Blockly.Python["homebit3_ir_recv"] = function (block) {
   var remote = block.getFieldValue("remote");
+  var pin = block.getFieldValue("pin");
   // TODO: Assemble Python into code variable.
-  Blockly.Python.definitions_['import_ir_receiver'] = 'from homebit3_ir_receiver import *; ir_rx.start();';
+  Blockly.Python.definitions_['import_ir_receiver'] = 'from homebit3_ir_receiver import *;';
+  Blockly.Python.definitions_['import_ir_receiver_init'] = 'ir_rx = IR_RX(Pin(' + pin + '.pin, Pin.IN)); ir_rx.start();';
   var code = 'ir_rx.get_code() == IR_REMOTE_' + remote;
   return [code, Blockly.Python.ORDER_NONE];
 };
