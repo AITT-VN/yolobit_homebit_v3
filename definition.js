@@ -152,13 +152,16 @@ Blockly.Blocks["homebit3_ir_recv"] = {
       helpUrl: "",
     });
   },
+  getDeveloperVars: function() {
+    return ['ir_rx'];
+  }
 };
 
 Blockly.Python["homebit3_ir_recv"] = function (block) {
   var remote = block.getFieldValue("remote");
   var pin = block.getFieldValue("pin");
   // TODO: Assemble Python into code variable.
-  Blockly.Python.definitions_['import_ir_receiver'] = 'from homebit3_ir_receiver import *;';
+  Blockly.Python.definitions_['import_ir_receiver'] = 'from homebit3_ir_receiver import *';
   Blockly.Python.definitions_['import_ir_receiver_init'] = 'ir_rx = IR_RX(Pin(' + pin + '.pin, Pin.IN)); ir_rx.start();';
   var code = 'ir_rx.get_code() == IR_REMOTE_' + remote;
   return [code, Blockly.Python.ORDER_NONE];
@@ -182,7 +185,6 @@ Blockly.Blocks["homebit3_ir_clear"] = {
 
 Blockly.Python["homebit3_ir_clear"] = function (block) {
   // TODO: Assemble Python into code variable.
-  Blockly.Python.definitions_['import_ir_receiver'] = 'from homebit3_ir_receiver import *; ir_rx.start();';
   var code = 'ir_rx.clear_code()\n';
   return code;
 };
@@ -311,6 +313,9 @@ Blockly.Blocks["homebit3_dht_measure"] = {
       tooltip: Blockly.Msg.BLOCK_DHT_MEANSURE_TOOLTIP,
       helpUrl: Blockly.Msg.BLOCK_DHT_MEANSURE_HELPURL
     });
+  },
+  getDeveloperVars: function() {
+    return ['dht20'];
   }
 };
 
@@ -382,6 +387,9 @@ Blockly.Blocks["homebit3_lcd1602_backlight"] = {
       helpUrl: "",
     });
   },
+  getDeveloperVars: function() {
+    return ['lcd1602'];
+  }
 };
 
 Blockly.Python['homebit3_lcd1602_backlight'] = function(block) {
@@ -427,6 +435,9 @@ Blockly.Blocks["homebit3_lcd1602_display"] = {
       helpUrl: "",
     });
   },
+  getDeveloperVars: function() {
+    return ['lcd1602'];
+  }
 };
 
 Blockly.Python["homebit3_lcd1602_display"] = function (block) {
@@ -452,6 +463,9 @@ Blockly.Blocks["homebit3_lcd1602_clear"] = {
       helpUrl: "Xóa trắng màn hình LCD1602",
     });
   },
+  getDeveloperVars: function() {
+    return ['lcd1602'];
+  }
 };
 
 Blockly.Python["homebit3_lcd1602_clear"] = function (block) {
@@ -479,8 +493,8 @@ Blockly.Blocks['homebit3_minifan'] = {
             "name": "NAME",
             "options": [
               [
-                "P3",
-                "pin3"
+                "P10",
+                "pin10"
               ],
               [
                 "P0",
@@ -493,6 +507,10 @@ Blockly.Blocks['homebit3_minifan'] = {
               [
                 "P2",
                 "pin2"
+              ],
+              [
+                "P3",
+                "pin3"
               ],
               [
                 "P4",
@@ -517,10 +535,6 @@ Blockly.Blocks['homebit3_minifan'] = {
               [
                 "P9",
                 "pin9"
-              ],
-              [
-                "P10",
-                "pin10"
               ],
               [
                 "P11",
@@ -721,6 +735,9 @@ Blockly.Blocks["homebit3_led_tiny_set_all"] = {
       helpUrl: ""
     });
   },
+  getDeveloperVars: function() {
+    return ['tiny_rgb'];
+  }
 };
 
 Blockly.Python['homebit3_led_tiny_set_all'] = function(block) {
@@ -744,7 +761,7 @@ Blockly.Blocks['homebit3_detect_motion'] = {
     this.jsonInit(
       {
         "type": "homebit3_detect_motion",
-        "message0": "cảm biến chân %1 phát hiện có người",
+        "message0": "cảm biến PIR chân %1 phát hiện có người",
         "args0": [
           {
             "type": "field_dropdown",
