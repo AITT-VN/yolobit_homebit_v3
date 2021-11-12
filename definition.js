@@ -304,14 +304,14 @@ Blockly.Python['homebit3_detect_fire'] = function(block) {
 Blockly.Blocks["homebit3_dht_measure"] = {
   init: function() {
     this.jsonInit({
-      message0: Blockly.Msg.BLOCK_DHT_MEANSURE_MESSAGE0,
+      message0: Blockly.Msg.BLOCK_HOMEBIT3_DHT_MEANSURE_MESSAGE0,
       args0: [
       ],
       previousStatement: null,
       nextStatement: null,
       colour: "#CC6600",
-      tooltip: Blockly.Msg.BLOCK_DHT_MEANSURE_TOOLTIP,
-      helpUrl: Blockly.Msg.BLOCK_DHT_MEANSURE_HELPURL
+      tooltip: Blockly.Msg.BLOCK_HOMEBIT3_DHT_MEANSURE_TOOLTIP,
+      helpUrl: Blockly.Msg.BLOCK_HOMEBIT3_DHT_MEANSURE_HELPURL
     });
   },
   getDeveloperVars: function() {
@@ -332,21 +332,21 @@ Blockly.Python["homebit3_dht_measure"] = function(block) {
 Blockly.Blocks["homebit3_dht_read"] = {
   init: function() {
     this.jsonInit({
-      message0: Blockly.Msg.BLOCK_DHT_READ_MESSAGE0,
+      message0: Blockly.Msg.BLOCK_HOMEBIT3_DHT_READ_MESSAGE0,
       args0: [
         {
           type: "field_dropdown",
           name: "DATA",
           options: [
-            [Blockly.Msg.BLOCK_DHT_READ_MESSAGE1, "TEMP"],
-            [Blockly.Msg.BLOCK_DHT_READ_MESSAGE2, "HUMID"]
+            [Blockly.Msg.BLOCK_HOMEBIT3_DHT_READ_MESSAGE1, "TEMP"],
+            [Blockly.Msg.BLOCK_HOMEBIT3_DHT_READ_MESSAGE2, "HUMID"]
           ]
         }
       ],
       output: null,
       colour: "#CC6600",
-      tooltip: Blockly.Msg.BLOCK_DHT_READ_TOOLTIP,
-      helpUrl: Blockly.Msg.BLOCK_DHT_READ_HELPURL
+      tooltip: Blockly.Msg.BLOCK_HOMEBIT3_DHT_READ_TOOLTIP,
+      helpUrl: Blockly.Msg.BLOCK_HOMEBIT3_DHT_READ_HELPURL
     });
   }
 };
