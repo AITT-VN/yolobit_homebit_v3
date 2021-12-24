@@ -2,8 +2,8 @@
   <category name="HOME:BIT V3" colour="#CC6600" icon="home">
     <block type="homebit3_ir_recv"/>
     <block type="homebit3_ir_clear"/>
+    <block type="homebit3_ir_on_receive"></block>
     <block type="homebit3_detect_fire"/>
-
     <block type="homebit3_dht_measure"/>
     <block type="homebit3_dht_read"/>
     <block type="homebit3_lcd1602_backlight"/>

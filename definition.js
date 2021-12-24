@@ -167,7 +167,6 @@ Blockly.Python["homebit3_ir_recv"] = function (block) {
   return [code, Blockly.Python.ORDER_NONE];
 };
 
-
 Blockly.Blocks["homebit3_ir_clear"] = {
   init: function () {
     this.jsonInit({
@@ -189,7 +188,32 @@ Blockly.Python["homebit3_ir_clear"] = function (block) {
   return code;
 };
 
+Blockly.Blocks["ble_on_receive_number"] = {
+  init: function () {
+    this.jsonInit({
+      colour: "#e3008c",
+      message0: "khi nhận được %1 %2 %3 qua bluetooth",
+      args0: [
+        {
+          variable: "số",
+          type: "field_variable",
+          name: "message",
+        },
+        {
+          type: "input_dummy",
+        },
+        {
+          type: "input_statement",
+          name: "ACTION",
+        },
+      ],
+      helpUrl: "",
+    });
+  },
+};
+
 // Cảm biến lửa
+
 Blockly.Blocks['homebit3_detect_fire'] = {
   /**
    * Block for waiting.
@@ -301,6 +325,8 @@ Blockly.Python['homebit3_detect_fire'] = function(block) {
   return [code, Blockly.Python.ORDER_NONE];
 };
 
+// dHT20
+
 Blockly.Blocks["homebit3_dht_measure"] = {
   init: function() {
     this.jsonInit({
@@ -327,7 +353,6 @@ Blockly.Python["homebit3_dht_measure"] = function(block) {
   var code = "dht20.read_dht20()\n";
   return code;
 };
-
 
 Blockly.Blocks["homebit3_dht_read"] = {
   init: function() {
@@ -365,6 +390,9 @@ Blockly.Python["homebit3_dht_read"] = function(block) {
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Python.ORDER_NONE];
 };
+
+
+// LCD 1602
 
 Blockly.Blocks["homebit3_lcd1602_backlight"] = {
   init: function () {
