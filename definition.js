@@ -968,6 +968,7 @@ Blockly.Python['homebit3_led_tiny_set_all'] = function(block) {
   var port = block.getFieldValue('port');
   var option = block.getFieldValue('option');
   var color = Blockly.Python.valueToCode(block, 'COLOR', Blockly.Python.ORDER_ATOMIC);
+  Blockly.Python.definitions_['import_yolobit'] = 'from yolobit import *';
   Blockly.Python.definitions_['import_led_tiny'] = 'from homebit3_rgbled import RGBLed';
   Blockly.Python.definitions_['import_led_tiny_init'] = 'tiny_rgb = RGBLed('+ port +'.pin, 4)';
   // TODO: Assemble Python into code variable.
