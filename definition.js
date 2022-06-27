@@ -19,14 +19,6 @@ Blockly.Blocks["homebit3_ir_recv"] = {
               "pin0"
             ],
             [
-              "P2",
-              "pin2"
-            ],
-            [
-              "P3",
-              "pin3"
-            ],
-            [
               "P4",
               "pin4"
             ],
@@ -153,7 +145,7 @@ Blockly.Blocks["homebit3_ir_recv"] = {
     });
   },
   getDeveloperVars: function() {
-    return ['ir_rx'];
+    return ['homebit3_ir_rx'];
   }
 };
 
@@ -162,8 +154,8 @@ Blockly.Python["homebit3_ir_recv"] = function (block) {
   var pin = block.getFieldValue("pin");
   // TODO: Assemble Python into code variable.
   Blockly.Python.definitions_['import_ir_receiver'] = 'from homebit3_ir_receiver import *';
-  Blockly.Python.definitions_['import_ir_receiver_init'] = 'ir_rx = IR_RX(Pin(' + pin + '.pin, Pin.IN)); ir_rx.start();';
-  var code = 'ir_rx.get_code() == IR_REMOTE_' + remote;
+  Blockly.Python.definitions_['import_ir_receiver_init'] = 'homebit3_ir_rx = IR_RX(Pin(' + pin + '.pin, Pin.IN)); homebit3_ir_rx.start();';
+  var code = 'homebit3_ir_rx.get_code() == IR_REMOTE_' + remote;
   return [code, Blockly.Python.ORDER_NONE];
 };
 
@@ -180,11 +172,14 @@ Blockly.Blocks["homebit3_ir_clear"] = {
       helpUrl: "",
     });
   },
+  getDeveloperVars: function() {
+    return ['homebit3_ir_rx'];
+  }
 };
 
 Blockly.Python["homebit3_ir_clear"] = function (block) {
   // TODO: Assemble Python into code variable.
-  var code = 'ir_rx.clear_code()\n';
+  var code = 'homebit3_ir_rx.clear_code()\n';
   return code;
 };
 
@@ -205,14 +200,6 @@ Blockly.Blocks["homebit3_ir_on_receive"] = {
             [
               "P0",
               "pin0"
-            ],
-            [
-              "P2",
-              "pin2"
-            ],
-            [
-              "P3",
-              "pin3"
             ],
             [
               "P4",
@@ -292,13 +279,16 @@ Blockly.Blocks["homebit3_ir_on_receive"] = {
       helpUrl: "",
     });
   },
+  getDeveloperVars: function() {
+    return ['homebit3_ir_rx'];
+  }
 };
 
 Blockly.Python['homebit3_ir_on_receive'] = function(block) {
   var pin = block.getFieldValue("pin");
   Blockly.Python.definitions_['import_ir_receiver'] = 'from homebit3_ir_receiver import *';
-  Blockly.Python.definitions_['import_ir_receiver_init'] = 'ir_rx = IR_RX(Pin(' + pin + '.pin, Pin.IN)); ir_rx.start();';
-  var variable_message = Blockly.Python.variableDB_.getName(block.getFieldValue('message'), Blockly.Variables.NAME_TYPE);
+  Blockly.Python.definitions_['import_ir_receiver_init'] = 'homebit3_ir_rx = IR_RX(Pin(' + pin + '.pin, Pin.IN)); homebit3_ir_rx.start();';
+  var variable_message = Blockly.Python.variableDB_.getName(block.getFieldValue('message'), Blockly.Names.NameType?Blockly.Names.NameType.VARIABLE:Blockly.Variables.NAME_TYPE);
   var statements_action = Blockly.Python.statementToCode(block, 'ACTION');
 
   var globals = [];
@@ -307,21 +297,22 @@ Blockly.Python['homebit3_ir_on_receive'] = function(block) {
   var variables = workspace.getAllVariables() || [];
   for (var i = 0, variable; variable = variables[i]; i++) {
     varName = variable.name;
-    if (variable_message != Blockly.Python.variableDB_.getName(varName, Blockly.Variables.NAME_TYPE))
+    if (Blockly.Python.variableDB_.getName(varName, Blockly.Names.NameType?Blockly.Names.NameType.VARIABLE:Blockly.Variables.NAME_TYPE) != variable_message) {
       globals.push(Blockly.Python.variableDB_.getName(varName,
-        Blockly.Variables.NAME_TYPE));
+        Blockly.Names.NameType?Blockly.Names.NameType.VARIABLE:Blockly.Variables.NAME_TYPE));
+    }
   }
   globals = globals.length ? Blockly.Python.INDENT + 'global ' + globals.join(', ') : '';
 
   var cbFunctionName = Blockly.Python.provideFunction_(
-    'on_ir_receive_callback_',
+    'on_ir_receive_callback',
     ['def ' + Blockly.Python.FUNCTION_NAME_PLACEHOLDER_ + '(' + variable_message + ', addr, ext):',
       globals,
       statements_action || Blockly.Python.PASS
     ]);
   
-  var code = 'ir_rx.on_received(' + cbFunctionName + ')\n';
-  Blockly.Python.definitions_['on_ir_receive_callback_' + '_statement'] = code;
+  var code = 'homebit3_ir_rx.on_received(' + cbFunctionName + ')\n';
+  Blockly.Python.definitions_['on_ir_receive_callback' + '_statement'] = code;
   return '';
 };
 
@@ -397,7 +388,7 @@ Blockly.Blocks["homebit3_ir_remote_btn"] = {
     });
   },
   getDeveloperVars: function() {
-    return ['ir_rx'];
+    return ['homebit3_ir_rx'];
   }
 };
 
